@@ -10,3 +10,8 @@
 * [Pan plano](recetas/pan_plano.md)
 * [Pasta fresca](recetas/pasta_fresca.md)
 * [Pizza](recetas/pizza.md)
+
+
+# IA para la sociedad
+* [Los informáticos como punta de lanza de los derechos laborables](ensayo/huelga_obrera.md)
+* [La IA usada en favor de los trabajadores](ensayo/ia_como_aliada_del_obrero.md)
