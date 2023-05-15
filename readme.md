@@ -6,7 +6,11 @@
 
 # Recetas
 
-* [Pan](recetas/pan.md)
-* [Pan plano](recetas/pan_plano.md)
 * [Pasta fresca](recetas/pasta_fresca.md)
 * [Pizza](recetas/pizza.md)
+* [Pan](recetas/pan.md)
+* [Pan plano](recetas/pan_plano.md)
+
+### Postres
+
+* [Coca de llanda de zanahoria](recetas/coca_llanda_zanahoria.md)
