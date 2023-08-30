@@ -16,6 +16,7 @@
 * [Pizza](recetas/pizza.md)
 * [Pan](recetas/pan.md)
 * [Pan plano](recetas/pan_plano.md)
+* [Arroz con calamares](https://www.recetasdeescandalo.com/arroz-con-calamares-facil-y-muy-rico/)
 
 ### Postres
 
