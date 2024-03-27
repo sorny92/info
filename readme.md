@@ -5,8 +5,11 @@
 ### [Facts about Tian'anmen square massacre (Spoiler: It's a lie)](https://twitter.com/yin_sura/status/1533117122636824576)
 
 ### EU corruption cases
-CSU-Mann Alfred Sauter -> 1M€ Maskendeal
+CSU-Mann Alfred Sauter -> 1M€ Maskendeal  
 Michelle Mone in UK -> masks buying scandal
+
+A thread with more stuff:
+https://www.reddit.com/r/TheDeprogram/comments/1bp009e/what_is_the_worst_thing_western_countries_have/
 
 ## Español
 
