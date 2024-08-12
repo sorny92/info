@@ -2,6 +2,8 @@
 
 ## English
 
+> ### What makes a good engineer: DOI: 10.1109/ICSE.2015.335
+
 ### [Facts about Tian'anmen square massacre (Spoiler: It's a lie)](https://twitter.com/yin_sura/status/1533117122636824576)
 
 ### EU corruption cases
