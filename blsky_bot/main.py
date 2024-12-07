@@ -35,6 +35,7 @@ def main() -> None:
     new_description = old_description
     max_temperature_24h= get_max_temperature_in_next_24h(latitude, longitude)
     new_display_name = f"Aquí, trabajando a {int(round(max_temperature_24h,0))}⁰C"
+    print(f"Display name is going to be set to: '{new_display_name}'", flush=True)
 
     client.com.atproto.repo.put_record(
         models.ComAtprotoRepoPutRecord.Data(
