@@ -1,0 +1,25 @@
+name: "Update name in Bluesky"
+on:
+  schedule:
+  - cron: "0 11 * * *"
+  push:
+    paths:
+      - blsky_bot
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: latest
+      - name: View poetry --help
+        env:
+          USERNAME: ${{ secrets.blsky_user }}
+          PASSWORD: ${{ secrets.blsky_pass }}
+        run: cd blsky_bot && poetry install && poetry run python main.py

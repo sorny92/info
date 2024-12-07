@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "blsky_bot"
+version = "0.1.0"
+description = ""
+authors = ["Esteve <yep@yep.com>"]
+license = "MIT"
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+atproto = "^0.0.56"
+requests = "^2.32.3"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+black = "^24.4.2"
+isort = "^5.13.2"
+ruff = "^0.0.286"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+line_length = 88
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
