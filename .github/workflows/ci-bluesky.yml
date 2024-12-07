@@ -1,10 +1,10 @@
 name: "Update name in Bluesky"
 on:
   schedule:
-  - cron: "0 11 * * *"
+    - cron: "0 11 * * *"
   push:
     paths:
-      - blsky_bot
+      - blsky_bot/*.py
 
 jobs:
   stale:
