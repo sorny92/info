@@ -4,10 +4,10 @@ on:
     - cron: "0 11 * * *"
   push:
     paths:
-      - blsky_bot/*.py
+      - 'blsky_bot/*.py'
 
 jobs:
-  stale:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
