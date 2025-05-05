@@ -15,12 +15,15 @@ def get_max_temperature_in_next_24h(lat, long):
     temperatures_24h = result.json()["hourly"]["temperature_2m"][:24]
     return max(temperatures_24h)
 
+
 def main() -> None:
     client = Client()
-    client.login(os.environ['USERNAME'], os.environ['PASSWORD'])
+    client.login(os.environ["USERNAME"], os.environ["PASSWORD"])
 
     try:
-        current_profile_record = client.app.bsky.actor.profile.get(client.me.did, 'self')
+        current_profile_record = client.app.bsky.actor.profile.get(
+            client.me.did, "self"
+        )
         current_profile = current_profile_record.value
         swap_record_cid = current_profile_record.cid
     except BadRequestError:
@@ -33,7 +36,7 @@ def main() -> None:
 
     # set new values to update
     new_description = old_description
-    max_temperature_24h= get_max_temperature_in_next_24h(latitude, longitude)
+    max_temperature_24h = get_max_temperature_in_next_24h(latitude, longitude)
     new_display_name = f"Aquí, trabajando a {int(round(max_temperature_24h,0))}⁰C"
     print(f"Display name is going to be set to: '{new_display_name}'", flush=True)
 
@@ -41,7 +44,7 @@ def main() -> None:
         models.ComAtprotoRepoPutRecord.Data(
             collection=models.ids.AppBskyActorProfile,
             repo=client.me.did,
-            rkey='self',
+            rkey="self",
             swap_record=swap_record_cid,
             record=models.AppBskyActorProfile.Record(
                 avatar=current_profile.avatar,  # keep old avatar. to set a new one, you should upload blob first
@@ -53,5 +56,5 @@ def main() -> None:
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

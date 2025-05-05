@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown File List</title>
+    <script src="api.js"></script>
+</head>
+<body>
+<h1>Markdown Files</h1>
+<ul id="file-list"></ul>
+
+<script>
+    function createListItems(files) {
+        const fileList = document.getElementById('file-list');
+        const groupedFiles = {};
+
+        files.forEach(file => {
+            const parts = file.split('/');
+            const directory = parts.length > 2 ? parts[1] : '';
+            const fileName = parts[parts.length - 1].replace('.md', '');
+
+            if (!groupedFiles[directory]) {
+                groupedFiles[directory] = [];
+            }
+            groupedFiles[directory].push(fileName);
+        });
+
+        const sortedDirectories = Object.keys(groupedFiles).sort((a, b) => {
+            if (a === '') return -1;
+            if (b === '') return 1;
+            return a.localeCompare(b);
+        });
+        for (const directory of sortedDirectories) {
+            const li = document.createElement('li');
+            if (directory) {
+                li.textContent = directory;
+                const subUl = document.createElement('ul');
+                groupedFiles[directory].sort((a, b) => a.localeCompare(b)).forEach(fileName => {
+                    const subLi = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `rendered_md.html?file=${encodeURIComponent(`markdown/${directory}/${fileName}.md`)}`;
+                    a.textContent = fileName;
+                    subLi.appendChild(a);
+                    subUl.appendChild(subLi);
+                });
+                li.appendChild(subUl);
+                fileList.appendChild(li);
+            } else {
+                groupedFiles[directory].sort((a, b) => a.localeCompare(b)).forEach(fileName => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `rendered_md.html?file=${encodeURIComponent(`markdown/${fileName}.md`)}`;
+                    a.textContent = fileName;
+                    li.appendChild(a);
+                    fileList.appendChild(li);
+                });
+            }
+        }
+    }
+
+    async function main() {
+        try {
+            const files = await getMdFiles();
+            createListItems(files);
+        } catch (error) {
+            console.error('Error:', error);
+            document.body.innerHTML += `<p>Error: ${error.message}</p>`;
+        }
+    }
+
+    main();
+</script>
+</body>
+</html>

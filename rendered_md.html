@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown Renderer</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="styles.css" rel="stylesheet">
+    <style type="text/tailwindcss">
+        @layer components {
+            h1 {
+                @apply text-2xl font-bold mb-4;
+            }
+            #content img {
+                @apply max-h-[200px] w-auto;
+            }
+            table {
+                @apply w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden;
+            }
+            th, td {
+                @apply border border-gray-300 px-4 py-2;
+            }
+            th {
+                @apply bg-gray-100 font-bold text-left;
+            }
+            tr:nth-child(even) {
+                @apply bg-gray-50;
+            }
+            tr:hover {
+                @apply bg-gray-200;
+            }
+            a {
+                @apply text-blue-600 underline;
+            }
+            a:hover {
+                @apply text-blue-800;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+<div id="content" class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg"></div>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams);
+    const file = urlParams.get('file') || 'markdown/caffe_tier_list.md';
+    fetch(file)
+.then(response => {
+    if (!response.ok) {
+        if (response.status === 404) {
+            throw new Error('404: File not found');
+        } else {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    }
+    return response.text();
+})
+.then(text => {
+    document.getElementById('content').innerHTML = marked.parse(text);
+})
+.catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+        document.getElementById('content').innerHTML = `<p class="text-red-500">Error: ${error.message}</p>`;
+});
+</script>
+</body>
+</html>
