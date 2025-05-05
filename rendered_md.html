@@ -73,6 +73,18 @@
     const urlParams = new URLSearchParams(window.location.search);
     console.log(urlParams);
     const file = urlParams.get('file') || 'markdown/caffe_tier_list.md';
+
+// Function to format the date
+function formatDate(date) {
+    return date.toLocaleString('es-ES', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+}
+
     fetch(file)
 .then(response => {
     if (!response.ok) {
@@ -82,11 +94,19 @@
             throw new Error(`HTTP error! status: ${response.status}`);
         }
     }
-    return response.text();
+    // Get the last modified date from the response headers
+    const lastModified = new Date(response.headers.get('Last-Modified'));
+    return Promise.all([response.text(), lastModified]);
 })
-.then(text => {
+.then(([text, lastModified]) => {
 const modifiedText = text.replace(/!\[([^\]]*)\]\(assets\//g, '![$1](markdown/recetas/assets/');
-document.getElementById('content').innerHTML = marked.parse(modifiedText);
+
+    // Create the last modified date element
+    const lastModifiedElement = `<p class="text-sm text-gray-600 mb-2">Retocadito por última vez el ${formatDate(lastModified)}</p>`;
+
+    // Combine the last modified date with the parsed markdown
+    const contentHtml = lastModifiedElement + marked.parse(modifiedText);
+    document.getElementById('content').innerHTML = contentHtml;
 })
 .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
