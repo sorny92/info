@@ -5,40 +5,69 @@
     <title>Markdown Renderer</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="styles.css" rel="stylesheet">
     <style type="text/tailwindcss">
         @layer components {
+    body {
+                @apply bg-gradient-to-r from-purple-100 to-blue-100 text-gray-800 font-sans;
+            }
             h1 {
-                @apply text-2xl font-bold mb-4;
+                @apply text-4xl font-extrabold mb-8 text-center text-purple-600 shadow-sm;
             }
-            #content img {
-                @apply max-h-[200px] w-auto;
+            h2 {
+                @apply text-2xl font-semibold mb-4 text-purple-400;
             }
-            table {
-                @apply w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden;
+            ul {
+        @apply list-disc pl-5 space-y-2;
             }
-            th, td {
-                @apply border border-gray-300 px-4 py-2;
-            }
-            th {
-                @apply bg-gray-100 font-bold text-left;
-            }
-            tr:nth-child(even) {
-                @apply bg-gray-50;
-            }
-            tr:hover {
-                @apply bg-gray-200;
+            li {
+        @apply mb-2;
             }
             a {
-                @apply text-blue-600 underline;
+                @apply text-indigo-600 hover:text-blue-600 transition-colors duration-300 underline;
             }
-            a:hover {
-                @apply text-blue-800;
+            #file-list > li {
+                @apply font-bold text-xl mb-5 bg-white rounded-lg p-4 shadow-md;
             }
+            #file-list > li > ul {
+                @apply ml-6 mt-3;
+            }
+            #file-list > li > ul > li {
+                @apply text-base font-normal bg-gray-50 rounded-md p-2 mb-2;
+            }
+            #content img {
+        @apply max-h-[200px] w-auto mx-auto block;
+            }
+    #content ul {
+        @apply list-disc pl-5 space-y-2 my-4;
+            }
+    #content li {
+        @apply ml-4 pl-2;
+            }
+    #content ol {
+        @apply list-decimal pl-5 space-y-2 my-4;
+            }
+    table {
+        @apply w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden;
+            }
+    th, td {
+        @apply border border-gray-300 px-4 py-2;
+            }
+    th {
+        @apply bg-gray-100 font-bold text-left;
+            }
+    tr:nth-child(even) {
+        @apply bg-gray-50;
         }
+    tr:hover {
+        @apply bg-gray-200;
+    }
+}
     </style>
 </head>
-<body class="bg-gray-100 p-8">
+<body class="p-8">
+<div class="max-w-4xl mx-auto mb-4">
+    <a href="index.html" class="text-indigo-600 hover:text-blue-600 transition-colors duration-300 underline">Back to Index</a>
+</div>
 <div id="content" class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg"></div>
 <script>
     const urlParams = new URLSearchParams(window.location.search);
@@ -56,7 +85,8 @@
     return response.text();
 })
 .then(text => {
-    document.getElementById('content').innerHTML = marked.parse(text);
+const modifiedText = text.replace(/!\[([^\]]*)\]\(assets\//g, '![$1](markdown/recetas/assets/');
+document.getElementById('content').innerHTML = marked.parse(modifiedText);
 })
 .catch(error => {
     console.error('There was a problem with the fetch operation:', error);

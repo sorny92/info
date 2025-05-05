@@ -2,13 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Markdown File List</title>
+    <title>Documentos de Esteve</title>
     <script src="api.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer components {
+            body {
+                @apply bg-gradient-to-r from-purple-100 to-blue-100 text-gray-800 font-sans;
+            }
+            h1 {
+                @apply text-4xl font-extrabold mb-8 text-center text-purple-600 shadow-sm;
+            }
+            ul {
+                @apply list-none p-0;
+            }
+            li {
+                @apply mb-3;
+            }
+            a {
+                @apply text-indigo-600 hover:text-blue-600 transition-colors duration-300 underline;
+            }
+            #file-list > li {
+                @apply font-bold text-xl mb-5 bg-white rounded-lg p-4 shadow-md;
+            }
+            #file-list > li > ul {
+                @apply ml-6 mt-3;
+            }
+            #file-list > li > ul > li {
+                @apply text-base font-normal bg-gray-50 rounded-md p-2 mb-2;
+            }
+        }
+    </style>
 </head>
-<body>
-<h1>Markdown Files</h1>
-<ul id="file-list"></ul>
-
+<body class="p-10">
+<h1 class="animate-pulse">Lectura interesante</h1>
+<ul id="file-list" class="max-w-3xl mx-auto"></ul>
 <script>
     function createListItems(files) {
         const fileList = document.getElementById('file-list');
@@ -30,33 +58,43 @@
             if (b === '') return 1;
             return a.localeCompare(b);
         });
+
         for (const directory of sortedDirectories) {
             const li = document.createElement('li');
             if (directory) {
-                li.textContent = directory;
+                li.textContent = formatText(directory);
                 const subUl = document.createElement('ul');
                 groupedFiles[directory].sort((a, b) => a.localeCompare(b)).forEach(fileName => {
                     const subLi = document.createElement('li');
                     const a = document.createElement('a');
                     a.href = `rendered_md.html?file=${encodeURIComponent(`markdown/${directory}/${fileName}.md`)}`;
-                    a.textContent = fileName;
+                    a.textContent = formatText(fileName);
                     subLi.appendChild(a);
                     subUl.appendChild(subLi);
                 });
                 li.appendChild(subUl);
                 fileList.appendChild(li);
             } else {
+            const subUl = document.createElement('ul');
                 groupedFiles[directory].sort((a, b) => a.localeCompare(b)).forEach(fileName => {
-                    const li = document.createElement('li');
+                    const subLi = document.createElement('li');
                     const a = document.createElement('a');
                     a.href = `rendered_md.html?file=${encodeURIComponent(`markdown/${fileName}.md`)}`;
-                    a.textContent = fileName;
-                    li.appendChild(a);
-                    fileList.appendChild(li);
+                    a.textContent = formatText(fileName);
+                    subLi.appendChild(a);
+                    subUl.appendChild(subLi);
                 });
+                li.appendChild(subUl);
+
+                fileList.appendChild(li);
             }
         }
     }
+
+function formatText(text) {
+    // Capitalize the first letter and replace underscores with spaces
+    return text.charAt(0).toUpperCase() + text.slice(1).replace(/_/g, ' ');
+}
 
     async function main() {
         try {
@@ -64,7 +102,7 @@
             createListItems(files);
         } catch (error) {
             console.error('Error:', error);
-            document.body.innerHTML += `<p>Error: ${error.message}</p>`;
+            document.body.innerHTML += `<p class="text-red-600 mt-4 text-center font-bold">Error: ${error.message}</p>`;
         }
     }
 
