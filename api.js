@@ -4,6 +4,7 @@ function listMdFiles() {
         "markdown/society_politics.md",
         "markdown/tesla_p40_inH110.md",
         "markdown/best_opensource_linux_software.md",
+        "markdown/engineering.md",
         "markdown/ML/other_ml.md",
         "markdown/ML/text_models_and_reasoning.md",
         "markdown/recetas/pasta_fresca.md",
