@@ -1,3 +1,5 @@
+# Best open software or at least usable for linux
+$$------------$$
 ## Music production
 https://www.bitwig.com/buy/
 

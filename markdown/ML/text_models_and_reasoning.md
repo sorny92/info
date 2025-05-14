@@ -1,4 +1,5 @@
-## Best Open Models
+# Best Open Models
+$$------------$$
 Latest, DeepSeek is the boss now. And the finetunes of DeepSeek-R1 are la fucking hostia:
 https://www.reddit.com/r/LocalLLaMA/comments/1i5q6b9/deepseekr1_and_distilled_benchmarks_color_coded/?rdt=48020
 

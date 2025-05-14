@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Markdown Renderer</title>
+    <title></title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
@@ -15,6 +15,10 @@
             }
             h2 {
                 @apply text-2xl font-semibold mb-4 text-purple-400;
+            }
+
+            h3 {
+                @apply text-xl font-semibold mb-2 text-purple-400;
             }
             ul {
         @apply list-disc pl-5 space-y-2;
@@ -66,15 +70,20 @@
 </head>
 <body class="p-8">
 <div class="max-w-4xl mx-auto mb-4">
-    <a href="index.html" class="text-indigo-600 hover:text-blue-600 transition-colors duration-300 underline">Back to Index</a>
+    <a href="index.html" class="text-indigo-600 hover:text-blue-600 transition-colors duration-300 underline">Back to
+        Index</a>
+    <div id="retocadito"></div>
 </div>
-<div id="content" class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg"></div>
+
+<div id="content" class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h1 id="markdown-title" class="text-3xl font-bold mb-4">Loading...</h1>
+    <div id="markdown-content"></div>
+</div>
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     console.log(urlParams);
     const file = urlParams.get('file') || 'markdown/caffe_tier_list.md';
 
-// Function to format the date
 function formatDate(date) {
     return date.toLocaleString('es-ES', {
         year: 'numeric',
@@ -85,29 +94,37 @@ function formatDate(date) {
     });
 }
 
-    fetch(file)
-.then(response => {
-    if (!response.ok) {
-        if (response.status === 404) {
-            throw new Error('404: File not found');
-        } else {
-            throw new Error(`HTTP error! status: ${response.status}`);
+    fetch(file).then(
+    response => {
+        if (!response.ok) {
+            if (response.status === 404) {
+                throw new Error('404: File not found');
+            } else {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
         }
-    }
-    // Get the last modified date from the response headers
-    const lastModified = new Date(response.headers.get('Last-Modified'));
-    return Promise.all([response.text(), lastModified]);
-})
-.then(([text, lastModified]) => {
-const modifiedText = text.replace(/!\[([^\]]*)\]\(assets\//g, '![$1](markdown/recetas/assets/');
+        const lastModified = new Date(response.headers.get('Last-Modified'));
+        return Promise.all([response.text(), lastModified]);
+    }).then(
+        ([text, lastModified]) => {
+            var [title, content] = text.split('$$------------$$');
+            title = title.replace('#', '').trim();
+            if (content === undefined) {
+                content = title;
+                title = 'Un documento de sorny92';
+            }
 
-    // Create the last modified date element
-    const lastModifiedElement = `<p class="text-sm text-gray-600 mb-2">Retocadito por última vez el ${formatDate(lastModified)}</p>`;
 
-    // Combine the last modified date with the parsed markdown
-    const contentHtml = lastModifiedElement + marked.parse(modifiedText);
-    document.getElementById('content').innerHTML = contentHtml;
-})
+            const modifiedText = content.replace(/!\[([^\]]*)\]\(assets\//g, '![$1](markdown/recetas/assets/');
+
+            const lastModifiedElement = `<p class="text-sm text-gray-600 mb-2">Retocadito por última vez el ${formatDate(lastModified)}</p>`;
+            document.getElementById('retocadito').innerHTML = lastModifiedElement;
+            const contentHtml = marked.parse(modifiedText);
+            document.getElementById('markdown-title').innerHTML = title;
+            document.getElementById('markdown-content').innerHTML = contentHtml;
+
+            document.title = title;
+        })
 .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
         document.getElementById('content').innerHTML = `<p class="text-red-500">Error: ${error.message}</p>`;

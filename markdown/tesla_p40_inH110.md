@@ -1,4 +1,5 @@
-## Process to install Tesla P40 in a i7-6700 with a h110 MB from HP.
+# Process to install Tesla P40 in a i7-6700 with a h110 MB from HP.
+$$------------$$
 
 Don't know what has made it work exactly but so far what I've done is next:
 

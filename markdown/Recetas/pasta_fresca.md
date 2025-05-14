@@ -1,5 +1,5 @@
 # Pasta fresca al huevo (1 persona)
-
+$$------------$$
 ## Ingredientes
 * 90gr Sémola de trigo fina
 * 1x Huevo M

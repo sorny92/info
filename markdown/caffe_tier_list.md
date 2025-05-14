@@ -1,5 +1,5 @@
 # El café es la vida y por ello hay que tener un ranking
-
+$$------------$$
 Uso una Gaggia Classic. 
 Modificaciones:
 * Cambio de termoválvula para que esté a 92ºC.
