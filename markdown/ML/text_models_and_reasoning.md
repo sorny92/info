@@ -14,3 +14,7 @@ https://huggingface.co/spaces/Qwen/QwQ-32B-preview
 
 To extract to JSON:
 https://huggingface.co/spaces/numind/NuExtract-1.5
+
+### Interesting projects:
+* https://github.com/vndee/local-talking-llm
+* https://github.com/langgenius/dify
