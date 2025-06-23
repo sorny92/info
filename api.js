@@ -10,6 +10,8 @@ function listMdFiles() {
         "markdown/Politics - Política/society_politics.md",
         "markdown/Politics - Política/los_objetivos_de_la_sociedad.md",
         "markdown/Politics - Política/remigracion.md",
+        "markdown/Politics - Política/cambio_climatico.md",
+        "markdown/Politics - Política/nacionalizacion_electricas.md",
         "markdown/Recetas/pasta_fresca.md",
         "markdown/Recetas/pizza.md",
         "markdown/Recetas/pan.md",
