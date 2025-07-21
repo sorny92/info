@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <title></title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mermaid-js/tiny@11/dist/mermaid.tiny.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=2.0" />
     <style type="text/tailwindcss">
         @layer components {
     body {
@@ -114,16 +117,27 @@ function formatDate(date) {
                 title = 'Un documento de sorny92';
             }
 
+            const modifiedText = content.replace(/!\[([^\]]*)\]\(assets\//g, '![$1](markdown/Recetas/assets/');
 
-            const modifiedText = content.replace(/!\[([^\]]*)\]\(assets\//g, '![$1](markdown/recetas/assets/');
+            var contentHtml = "Nothing";
+            if (modifiedText.includes('gantt')) {
+                contentHtml = " \
+                <pre class='mermaid'>" + modifiedText
+                    "</pre>";
+            } else {
+                contentHtml = marked.parse(modifiedText);
+            }
 
             const lastModifiedElement = `<p class="text-sm text-gray-600 mb-2">Retocadito por última vez el ${formatDate(lastModified)}</p>`;
             document.getElementById('retocadito').innerHTML = lastModifiedElement;
-            const contentHtml = marked.parse(modifiedText);
             document.getElementById('markdown-title').innerHTML = title;
             document.getElementById('markdown-content').innerHTML = contentHtml;
 
             document.title = title;
+
+            if (modifiedText.includes('gantt')) {
+               mermaid.run();
+            }
         })
 .catch(error => {
     console.error('There was a problem with the fetch operation:', error);

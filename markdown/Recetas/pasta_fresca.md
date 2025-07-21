@@ -27,4 +27,4 @@ $$------------$$
 9. Cuando esté hirviendo añadir la pasta.
 10. Esperar 2 o 3 minutos y está listo.
 
-(Información sacada de aquí)[https://voyasercocinero.es/hacer-pasta-fresca/]
+[Información sacada de aquí](https://voyasercocinero.es/hacer-pasta-fresca/)

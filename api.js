@@ -1,5 +1,6 @@
 function listMdFiles() {
     const mdFiles = [
+        "markdown/predictions_for_the_future.md",
         "markdown/caffe_tier_list.md",
         "markdown/tesla_p40_inH110.md",
         "markdown/best_opensource_linux_software.md",
