@@ -6,15 +6,20 @@ config:
   theme: forest
 ---
 gantt
-    title Preditions gantt
+    title My predictions
     dateFormat  YYYY-MM-DD
     section Political events
     In this timeframe, American troops deployed in Iran :crit, 2026-01-01, 5M
-    section $RKLB Price predictions
-    low 11,  mid 18,  hype 44  : 2025-01-01  , 365d
-    low 18,  mid 31,  hype 74  : 2026-01-01  , 365d
-    low 26,  mid 43,  hype 103 : 2027-01-01  , 365d
-    low 38,  mid 64,  hype 153 : 2028-01-01  , 365d
-    low 56,  mid 94,  hype 225 : 2029-01-01  , 365d
-    low 85,  mid 141, hype 338 : 2030-01-01  , 365d
-    low 113, mid 188, hype 452 : 2031-01-01  , 365d
+    Elecciones generales España :crit, 2027-07-01, 1M
+    section $RKLB Price predictions (low, mid, hype)
+    l-11,  m-18,  h-44 : 2025-01-01  , 365d
+    l-18,  m-31,  h-74 : 2026-01-01  , 365d
+    l-26,  m-43,  h-103: 2027-01-01  , 365d
+    l-38,  m-64,  h-153: 2028-01-01  , 365d
+    l-56,  m-94,  h-225: 2029-01-01  , 365d
+    l-85,  m-141, h-338: 2030-01-01  , 365d
+    l-113, m-188, h-452: 2031-01-01  , 365d
+    section Climate change
+    We should be peaking in CO2 emissions: 2030-01-01, 1d
+    China says they have peaked in CO2 emissions: 2030-01-01, 1d
+    
