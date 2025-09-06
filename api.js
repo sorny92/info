@@ -8,6 +8,7 @@ function listMdFiles() {
         "markdown/ML/other_ml.md",
         "markdown/ML/text_models_and_reasoning.md",
         "markdown/Politics - Política/co-ops.md",
+        "markdown/Politics - Política/cargadores_coche_electrico.md",
         "markdown/Politics - Política/society_politics.md",
         "markdown/Politics - Política/los_objetivos_de_la_sociedad.md",
         "markdown/Politics - Política/remigracion.md",
