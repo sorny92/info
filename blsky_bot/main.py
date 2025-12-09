@@ -9,11 +9,11 @@ latitude = 39.47
 longitude = -0.376389
 
 
-def get_max_temperature_in_next_24h(lat, long):
+def get_temperature_in_next_24h(lat, long):
     url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={long}&hourly=temperature_2m"
     result = requests.get(url)
     temperatures_24h = result.json()["hourly"]["temperature_2m"][:24]
-    return max(temperatures_24h)
+    return min(temperatures_24h), max(temperatures_24h)
 
 
 def main() -> None:
@@ -36,8 +36,8 @@ def main() -> None:
 
     # set new values to update
     new_description = old_description
-    max_temperature_24h = get_max_temperature_in_next_24h(latitude, longitude)
-    new_display_name = f"Aquí, trabajando a {int(round(max_temperature_24h,0))}⁰C"
+    min_temperature_24h, max_temperature_24h = get_temperature_in_next_24h(latitude, longitude)
+    new_display_name = f"Aquí, trabajando entre {int(round(min_temperature_24h,0))}-{int(round(max_temperature_24h,0))}⁰C"
     print(f"Display name is going to be set to: '{new_display_name}'", flush=True)
 
     client.com.atproto.repo.put_record(
