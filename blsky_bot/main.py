@@ -37,7 +37,7 @@ def main() -> None:
     # set new values to update
     new_description = old_description
     min_temperature_24h, max_temperature_24h = get_temperature_in_next_24h(latitude, longitude)
-    new_display_name = f"Aquí, trabajando entre {int(round(min_temperature_24h,0))}-{int(round(max_temperature_24h,0))}⁰C"
+    new_display_name = f"Aquí, sin trabajar entre {int(round(min_temperature_24h,0))}-{int(round(max_temperature_24h,0))}⁰C"
     print(f"Display name is going to be set to: '{new_display_name}'", flush=True)
 
     client.com.atproto.repo.put_record(
