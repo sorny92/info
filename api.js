@@ -17,6 +17,7 @@ function listMdFiles() {
         "markdown/Politics - Política/nacionalizacion_electricas.md",
         "markdown/Recetas/pasta_fresca.md",
         "markdown/Recetas/lasagna.md",
+        "markdown/Recetas/paella.md",
         "markdown/Recetas/pizza.md",
         "markdown/Recetas/pan.md",
         "markdown/Recetas/pan_plano.md",
